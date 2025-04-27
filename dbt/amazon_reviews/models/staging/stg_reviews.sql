@@ -1,4 +1,3 @@
--- models/staging/stg_reviews.sql
 {{
   config(
     materialized='view'
@@ -21,7 +20,7 @@ with source as (
 )
 
 select
-  -- 生成 review_id
+  -- generate unique review_id
   MD5(CONCAT(
               COALESCE(CAST(user_id AS STRING), ""),
               COALESCE(CAST(parent_asin AS STRING), ""),

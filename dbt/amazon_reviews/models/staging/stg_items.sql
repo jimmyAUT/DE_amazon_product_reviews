@@ -1,4 +1,3 @@
--- models/staging/stg_items.sql
 {{
   config(
     materialized='view'
@@ -16,7 +15,7 @@ renamed as (
         title,
         store,
 
-        -- clean the price to pure number 
+        -- clean the price to pure number form
         SAFE_CAST(
             regexp_extract(price, r'\d+(?:\.\d+)?') AS FLOAT64
         ) as price,

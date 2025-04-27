@@ -1,3 +1,18 @@
+# End-to-End Data Pipeline for Amazon Product Reviews Analysis
+
+---
+
+## Problem statement
+
+
+---
+
+## Project Overview
+
+This project builds an end-to-end data pipeline for Amazon Product Reviews to transform raw data into clean, structured, and trusted datasets. By designing a scalable and tested pipeline with dbt, BigQuery, and Power BI, this project enable fast, reliable, and insightful analysis of customer behaviors, product trends, and sales performance. This foundation is crucial because it empowers businesses to make data-driven decisions with confidence, optimize products and marketing strategies, and uncover hidden opportunities in massive datasets that would otherwise be too chaotic to analyze effectively.
+
+
+
 Data source:  
 ## Bridging Language and Items for Retrieval and Recommendation
 Yupeng Hou, Jiacheng Li, Zhankui He, An Yan, Xiusi Chen, Julian McAuley

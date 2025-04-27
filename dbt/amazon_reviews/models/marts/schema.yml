@@ -125,33 +125,18 @@ models:
       - name: review_id
         data_type: bytes
         description: "Unique identifier for each review."
-        # tests:
-        #   - not_null
-        #   - unique
       
       - name: review_id_power_bi
         description: "Review ID converted to string format for Power BI compatibility."
         data_type: string
-        # tests:
-        #   - not_null
 
       - name: user_id
         data_type: string
         description: "ID of the user who wrote the review."
-        # tests:
-        #   - not_null
-        #   - relationships:
-        #       to: ref('dim_users')
-        #       field: user_id
 
       - name: asin
         data_type: string
         description: "ASIN of the product being reviewed."
-        # tests:
-        #   - not_null
-        #   - relationships:
-        #       to: ref('dim_items')
-        #       field: asin
 
       - name: rating
         data_type: float64
@@ -196,10 +181,6 @@ models:
       - name: review_date
         data_type: date
         description: "Date when the review was submitted."
-        # tests:
-        #   - relationships:
-        #       to: ref('dim_time')
-        #       field: date_day
 
       - name: day_name
         data_type: string

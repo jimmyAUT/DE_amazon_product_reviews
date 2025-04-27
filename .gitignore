@@ -62,5 +62,8 @@ logs/
 # legacy -- renamed to dbt_packages in dbt v1
 dbt_modules/
 
-# ======================= raw data ====================
-fhv_tripdata_2019/
+# raw data example
+raw/
+
+# Credentials
+key/

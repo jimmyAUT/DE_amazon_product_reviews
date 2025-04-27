@@ -1,0 +1,206 @@
+version: 2
+
+models:
+  - name: dim_items
+    description: "Dimension table containing product information and pricing details."
+    columns:
+      - name: asin
+        data_type: string
+        description: "Unique identifier for each product (Amazon Standard Identification Number, ASIN)."
+        tests:
+          - not_null
+          - unique
+
+      - name: title
+        data_type: string
+        description: "Title or name of the product."
+
+      - name: category
+        data_type: string
+        description: "Main category to which the product belongs."
+
+      - name: store
+        data_type: string
+        description: "Platform or store where the product is sold."
+
+      - name: price
+        data_type: float64
+        description: "Product price in USD, cleaned to pure numeric format."
+
+      - name: average_rating
+        data_type: float64
+        description: "Average rating of the product."
+
+      - name: rating_number
+        data_type: float64
+        description: "Total number of ratings received by the product."
+
+  - name: dim_users
+    description: "Dimension table aggregating user review activity and spending behavior."
+    columns:
+      - name: user_id
+        data_type: string
+        description: "Unique identifier for each user."
+        tests:
+          - not_null
+          - unique
+
+      - name: verified_purchase_count
+        data_type: int64
+        description: "Number of reviews the user made as a verified purchaser."
+
+      - name: review_count
+        data_type: int64
+        description: "Total number of reviews submitted by the user."
+
+      - name: first_review_date
+        data_type: timestamp
+        description: "Date when the user submitted their first review."
+
+      - name: last_review_date
+        data_type: timestamp
+        description: "Date when the user submitted their most recent review."
+
+      - name: active_days
+        data_type: int64
+        description: "Number of unique days the user submitted reviews."
+
+      - name: avg_days_between_reviews
+        data_type: float64
+        description: "Average number of days between the user's reviews."
+
+      - name: total_spent
+        data_type: float64
+        description: "Total estimated amount spent by the user based on reviewed products."
+
+  - name: dim_time
+    description: "Time dimension table for supporting flexible time-based analysis (year, month, week, day)."
+    columns:
+      - name: date_day
+        data_type: date
+        description: "Full calendar date (YYYY-MM-DD)."
+        tests:
+          - not_null
+          - unique
+
+      - name: year
+        data_type: int64
+        description: "Year component of the date."
+
+      - name: month
+        data_type: int64
+        description: "Month component of the date (1 to 12)."
+
+      - name: day
+        data_type: int64
+        description: "Day component of the date (1 to 31)."
+
+      - name: quarter
+        data_type: int64
+        description: "Quarter of the year (1 to 4)."
+
+      - name: day_name
+        data_type: string
+        description: "Name of the weekday (e.g., Monday, Tuesday)."
+
+      - name: month_name
+        data_type: string
+        description: "Name of the month (e.g., January, February)."
+
+      - name: week_of_year
+        data_type: int64
+        description: "Week number within the year (1 to 52)."
+
+      - name: day_of_week
+        data_type: int64
+        description: "Day number within the week (1=Monday, 7=Sunday)."
+
+      - name: is_weekend
+        data_type: boolean
+        description: "Indicates whether the date falls on a weekend."
+
+  - name: fct_reviews
+    description: "Fact table containing detailed records of individual product reviews."
+    columns:
+      - name: review_id
+        data_type: bytes
+        description: "Unique identifier for each review."
+        # tests:
+        #   - not_null
+        #   - unique
+      
+      - name: review_id_power_bi
+        description: "Review ID converted to string format for Power BI compatibility."
+        data_type: string
+        # tests:
+        #   - not_null
+
+      - name: user_id
+        data_type: string
+        description: "ID of the user who wrote the review."
+        # tests:
+        #   - not_null
+        #   - relationships:
+        #       to: ref('dim_users')
+        #       field: user_id
+
+      - name: asin
+        data_type: string
+        description: "ASIN of the product being reviewed."
+        # tests:
+        #   - not_null
+        #   - relationships:
+        #       to: ref('dim_items')
+        #       field: asin
+
+      - name: rating
+        data_type: float64
+        description: "Rating given to the product, typically between 1 and 5."
+
+      - name: verified_purchase
+        data_type: boolean
+        description: "Indicates whether the review is from a verified purchase."
+
+      - name: helpful_votes
+        data_type: int64
+        description: "Number of helpful votes the review has received."
+
+      - name: timestamp
+        data_type: timestamp
+        description: "Exact timestamp when the review was submitted."
+
+      - name: review_month
+        data_type: timestamp
+        description: "The month the review was submitted, used for aggregation."
+
+      - name: price
+        data_type: float64
+        description: "Product price at the time of review."
+
+      - name: category
+        data_type: string
+        description: "Category of the reviewed product."
+
+      - name: store
+        data_type: string
+        description: "Platform or store where the product was purchased."
+
+      - name: avg_rating
+        data_type: float64
+        description: "Average product rating at the time of review."
+
+      - name: rating_diff_from_avg
+        data_type: float64
+        description: "Difference between the review's rating and the product's average rating."
+
+      - name: review_date
+        data_type: date
+        description: "Date when the review was submitted."
+        # tests:
+        #   - relationships:
+        #       to: ref('dim_time')
+        #       field: date_day
+
+      - name: day_name
+        data_type: string
+        description: "Weekday name on which the review was submitted."

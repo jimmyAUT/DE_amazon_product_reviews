@@ -1,0 +1,83 @@
+version: 2
+
+sources:
+  - name: staging
+    description: "Staging external tables from GCS (Parquet) for Amazon product review"
+    database: de-amazon-product-review
+    schema: de_amazon_product_reviews
+    tables:
+      - name: stg_items_ext
+      - name: stg_reviews_ext
+
+models:
+  - name: stg_reviews
+    description: "Staging model for Amazon product reviews, standardized and cleaned from raw source data."
+    columns:
+      - name: review_id
+        data_type: bytes
+        description: "A unique identifier for each review, generated using MD5 hash of user_id, parent_asin, and timestamp."
+
+      - name: parent_asin
+        data_type: string
+        description: "The unique product family identifier (ASIN) that groups related products together."
+
+      - name: user_id
+        data_type: string
+        description: "Unique identifier of the customer who submitted the review."
+
+      - name: rating
+        data_type: float64
+        description: "Rating score given by the user, typically ranging from 1.0 to 5.0."
+
+      - name: verified_purchase
+        data_type: boolean
+        description: "Boolean flag indicating whether the user purchased the item via Amazon (true = verified)."
+
+      - name: helpful_votes
+        data_type: int64
+        description: "Number of helpful votes the review received from other users."
+
+      - name: timestamp
+        data_type: timestamp
+        description: "Timestamp when the review was submitted, in UTC."
+
+      - name: year
+        data_type: int64
+        description: "Extracted year component from the review timestamp."
+
+      - name: month
+        data_type: int64
+        description: "Extracted month component from the review timestamp."
+
+      - name: day
+        data_type: int64
+        description: "Extracted day component from the review timestamp."
+
+  - name: stg_items
+    description: "Staging table for Amazon product items data. Cleans and prepares raw item information."
+    columns:
+      - name: asin
+        description: "The unique ASIN (Amazon Standard Identification Number) for the product."
+        tests:
+          - not_null
+          - unique
+
+      - name: category
+        description: "Main product category for the item."
+
+      - name: title
+        description: "The product title or name."
+
+      - name: store
+        description: "The Amazon store or marketplace where the product is listed."
+
+      - name: price
+        description: "The product price extracted and cast to FLOAT64."
+
+      - name: average_rating
+        description: "The average customer rating for the product."
+
+      - name: rating_number
+        description: "The total number of customer ratings for the product."
+
+

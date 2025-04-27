@@ -21,3 +21,10 @@ variable "bigquery_dataset" {
   default = "de_amazon_product_reviews"
 }
 
+
+variable "service_account_email" {
+  type        = string
+  description = "Service Account email to attach to Dataproc Cluster"
+  default     = "jimmyh@de-amazon-product-review.iam.gserviceaccount.com"
+}
+

@@ -35,7 +35,9 @@ Here are the key data entities processed:
 4. Time: Year, month, day, week, holiday, and weekend indicators
 
 ## Architecture
-![Architecture]<Architecture.png>
+
+![Architecture](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/Architecture.png)
+
 
 ## Infrastructure Setup (Terraform)
 
@@ -258,7 +260,7 @@ Translate large-scale review data into intuitive charts and dashboards Power BI.
 
   - Create filters/slicers for verified purchase.
 
-![Report-1]<report-1.png>
+![Report-1](/report-1.png)
 
-![Report-2]<report-2.png>
+![Report-2](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/report-2.png)
 

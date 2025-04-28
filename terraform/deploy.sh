@@ -1,14 +1,14 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -e 
 
-echo "🔹 Initializing Terraform..."
+echo "Initializing Terraform"
 terraform init
 
-echo "🔹 Creating Terraform plan..."
+echo "Creating Terraform plan"
 terraform plan
 
-echo "🔹 Applying Terraform configuration..."
+echo "Applying Terraform configuration"
 terraform apply
 
-echo "✅ Deployment complete!"
+echo "Deployment complete!"

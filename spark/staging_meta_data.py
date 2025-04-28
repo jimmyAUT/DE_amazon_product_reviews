@@ -22,6 +22,7 @@ df = spark.read.option("mergeSchema", "true") \
 
 
 # select columns 
+# repartition to 100 parts for processing faster
 df_clean = df.select(
     col("main_category"),
     col("parent_asin"),
@@ -33,5 +34,5 @@ df_clean = df.select(
     col("store")
 ).repartition(100)
 
-# 存成 Parquet 檔到 staging/item/
+# store as Parquet files to gs://bucket/staging/item/
 df_clean.write.mode("overwrite").parquet("gs://de-amazon-product-review-bucket/staging/test")

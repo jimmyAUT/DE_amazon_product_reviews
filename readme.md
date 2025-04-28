@@ -11,7 +11,7 @@ This project builds an end-to-end data pipeline for Amazon Product Reviews to tr
 This Amazon Review Data Pipeline project automates the workflow by:
 
 1. Extracting Amazon product review and product metadata from raw datasets.  
-  **Thanks UCSD McAuley Lab collected this large-scale Amazon Reviews dataset in 2023. (https://amazon-reviews-2023.github.io/main.html)**   
+  **Thanks UCSD McAuley Lab collected this large-scale Amazon Reviews dataset in 2023. [Amazon Reviews’23](https://amazon-reviews-2023.github.io/main.html)**   
   **Bridging Language and Items for Retrieval and Recommendation -- Yupeng Hou, Jiacheng Li, Zhankui He, An Yan, Xiusi Chen, Julian McAuley. arXiv:2403.03952, 2024**   
 
 2. Storing raw data in GCS (Google Cloud Storage) as a data lake.
@@ -81,7 +81,7 @@ Deploy the infrastructure setting
 
 ## Extract Raw Data From Website To Data Lake
 
-The [raw_to_gcs.py]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/raw_to_gcs.py> python script subprocess and gcloud upload raw data from website to GCS data lake straight.  
+The [raw_to_gcs.py](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/raw_to_gcs.py) python script subprocess and gcloud upload raw data from website to GCS data lake straight.  
 Raw reviews data -> gs://de-amazon-product-review-bucket/raw/reviews/  
 Raw meta data -> gs://de-amazon-product-review-bucket/raw/meta/   
 
@@ -110,7 +110,7 @@ Workflow:
 
   Remove duplicates and handle missing values.
 
-2. Upload spark script [staging_meta_data.py]<> ,[staging_review_data.py]<> to gs://project-bucket/scripts/
+2. Upload spark script [staging_meta_data.py](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/staging_meta_data.py) ,[staging_review_data.py](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/staging_review_data.py) to gs://project-bucket/scripts/
 
   ```bash
   gsutil cp staging_meta_data.py gs://de-amazon-product-review-bucket/scripts/
@@ -147,9 +147,9 @@ Workflow:
   ```
 
 4. Read staing file from GCS locally.
-  The [read_items_locally.ipynb]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/read_items_locally.ipynb>  
+  The [read_items_locally.ipynb](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/read_items_locally.ipynb)  
   and  
-  [read_reviews_locally.ipynb]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/read_reviews_locally.ipynb> allow us check the staging data locally.
+  [read_reviews_locally.ipynb](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/spark/read_reviews_locally.ipynb) allow us check the staging data locally.
 
 ## Data Warehouse Modeling
 DBT (data build tool) is used to manage the transformation of cleaned staging data into a well-structured BigQuery data warehouse to support analytics and reporting.

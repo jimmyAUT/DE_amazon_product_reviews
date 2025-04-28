@@ -35,7 +35,7 @@ Here are the key data entities processed:
 4. Time: Year, month, day, week, holiday, and weekend indicators
 
 ## Architecture
-![Architecture.png]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/Architecture.png>
+![Architecture.png]<Architecture.png>
 
 ## Infrastructure Setup (Terraform)
 
@@ -231,7 +231,7 @@ The overall process consists of the following key steps:
     For fct_reviews table, partitioning(**by time, monthly**) and clustering(**by user and product asin**) strategies are applied where necessary to optimize query speed and reduce costs.
 
 6. Architecture
-![DAG](https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/dbt/dbt-dag.png)
+![DAG](/dbt/dbt-dag.png)
 
 ## Data Vizualization
 Translate large-scale review data into intuitive charts and dashboards Power BI.
@@ -258,7 +258,7 @@ Translate large-scale review data into intuitive charts and dashboards Power BI.
 
   - Create filters/slicers for verified purchase.
 
-![Report-1]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/report-1.png>
+![Report-1]<report-1.png>
 
-![Report-2]<https://github.com/jimmyAUT/DE_amazon_product_reviews/blob/main/report-2.png>
+![Report-2]<report-2.png>
 
